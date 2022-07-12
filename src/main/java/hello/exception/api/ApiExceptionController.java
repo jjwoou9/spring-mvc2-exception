@@ -46,6 +46,9 @@ public class ApiExceptionController {
     public String defaultException(@RequestParam Integer data) {
         return "ok";
     }
+    /*
+    * 내장되어 있는 DefaultHandlerException이 처리해서 500에러를 -> 400에러로 변환해줌.
+    */
 
 
     @Data

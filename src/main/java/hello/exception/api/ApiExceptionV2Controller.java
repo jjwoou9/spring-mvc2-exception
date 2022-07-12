@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class ApiExceptionV2Controller {
 
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IllegalArgumentException.class)
+    /*
+    ExceptionHandler
+    advice.ExControllerAdvice로 이동
+     */
+
+/*    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IllegalArgumentException.class)*/
     public ErrorResult illegalExHandler(IllegalArgumentException e){
         /*
         이대로 사용하면 정상처리가 되서 코드가 200이 되버린다.
@@ -26,15 +31,15 @@ public class ApiExceptionV2Controller {
         return new ErrorResult("Bad", e.getMessage());
     }
 
-    @ExceptionHandler
+/*    @ExceptionHandler*/
     public ResponseEntity<ErrorResult> userExHander(UserException e){
         log.error("[exceptionHandler] ex ", e);
         ErrorResult errorResult = new ErrorResult("USER-ex", e.getMessage());
         return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler
+/*    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler*/
     public ErrorResult exHandler(Exception e){
         /*
         최상위 Exception 위에 Exception에서 처리되지 못한 Exception 넘어옴
